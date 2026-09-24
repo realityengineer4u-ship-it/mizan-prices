@@ -1,1 +1,10 @@
-{"_readme":"اكتب هنا أي سعر عايز تفرضه يدويًا، مثال: {\"AE\":{\"steel\":{\"v\":3200,\"src_ar\":\"Emirates Steel أكتوبر 2026\",\"src_en\":\"Emirates Steel October 2026\"}}}"}
+{
+ "_readme": "اكتب هنا أي سعر عايز تفرضه يدويًا (الإمارات والسعودية وباقي الخامات)",
+ "AE": {
+  "steel": {
+   "v": 3150,
+   "src_ar": "Emirates Steel — سبتمبر 2026",
+   "src_en": "Emirates Steel — September 2026"
+  }
+ }
+}
