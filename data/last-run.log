@@ -1,39 +1,34 @@
-2026-09-24T08:47:57.919Z
-feed www.bing.com (0)
-feed www.bing.com (5)
+2026-09-24T08:52:47.893Z
+feed www.bing.com (12)
 feed news.google.com (0)
-feed news.google.com (0)
+EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
-EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
-EG article 1 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b0ed9
-EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b0ed9
-EG steel: not enough mills {"السويس":[38950]}
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
 feed www.bing.com (7)
-feed www.bing.com (0)
+feed www.bing.com (2)
 feed news.google.com (0)
 feed news.google.com (0)
 cement 0 hits
 cement 1 hits
+cement 4 hits
 cement 8 hits
+cement 1 hits
 cement 10 hits
 cement 1 hits
+cement 0 hits
 cement 4 hits
-cement 1 hits
 SA shop الراجحي: 21 prices
 SA shop سابك: 20 prices
-feed www.bing.com (4)
-feed www.bing.com (2)
-feed www.bing.com (0)
-feed news.google.com (0)
-feed news.google.com (0)
-feed news.google.com (0)
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9b4f
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9b4f
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9b4f
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9b4f
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9ee2
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e3b9ee2
-AE steel: not enough mills {}
+AE shop حديد الإمارات 12مم: 22 prices
+AE shop حديد الإمارات 16مم: 14 prices
 REJECT EG.cement: 4200 -> 3850 (8.3%)
-CHANGED=1 date=2026-09-24 auto={"EG":"cement:3850","AE":"","SA":"steel:3200"}
+CHANGED=1 date=2026-09-24 auto={"EG":"steel:39500,cement:3850","AE":"steel:3510","SA":"steel:3200"}
