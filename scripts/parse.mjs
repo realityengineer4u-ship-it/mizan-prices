@@ -42,3 +42,8 @@ export function parseCement(t) {
   while ((m = re.exec(t))) { const v = toNum(m[1]); if (v >= 2500 && v <= 9000) vals.push(v); }
   return vals;
 }
+
+export function pageMax(t, c) {
+  const v = pagePrices(t, c);
+  return v.length ? Math.max(...v) : NaN;
+}
