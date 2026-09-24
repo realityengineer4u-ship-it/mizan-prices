@@ -1,32 +1,36 @@
 npm notice
-npm notice 📦  mizan-bina-prices@1.0.8
+npm notice 📦  mizan-bina-prices@1.0.9
 npm notice Tarball Contents
-npm notice 2.4kB README.md
-npm notice 1.9kB data/current.json
+npm notice 1.9kB README.md
+npm notice 2.2kB data/current.json
 npm notice 354B package.json
-npm notice 1.7kB prices.js
+npm notice 2.0kB prices.js
 npm notice Tarball Details
 npm notice name: mizan-bina-prices
-npm notice version: 1.0.8
-npm notice filename: mizan-bina-prices-1.0.8.tgz
-npm notice package size: 2.4 kB
-npm notice unpacked size: 6.3 kB
-npm notice shasum: 5f88be516f3ac80413d38c7c43f8ba65340ccac4
-npm notice integrity: sha512-VB+RiZoRia6Xs[...]2a69rByGt2oIg==
+npm notice version: 1.0.9
+npm notice filename: mizan-bina-prices-1.0.9.tgz
+npm notice package size: 2.3 kB
+npm notice unpacked size: 6.5 kB
+npm notice shasum: 33cd4fb544d7cde5035ba6a5ef57021ac4d6240b
+npm notice integrity: sha512-+bmlql6ZR7Bcg[...]eDnHoCAsh1QWw==
 npm notice total files: 4
 npm notice
 npm notice Publishing to https://registry.npmjs.org/ with tag latest and public access
 npm notice Your package is being processed and may take a few minutes to become available.
-+ mizan-bina-prices@1.0.8
++ mizan-bina-prices@1.0.9
 npm exit: 0
 {
-  "id": "R3GgpZqX0MNw0PD5",
+  "id": "MsLxDTQ97ihNEc0G",
   "status": "finished",
-  "timestamp": "2026-09-24T09:04:22.021Z",
+  "timestamp": "2026-09-24T13:16:49.156Z",
   "paths": {
     "/npm/mizan-bina-prices@latest/prices.js": {
-      "throttled": true,
-      "throttlingReset": 436
+      "throttled": false,
+      "providers": {
+        "CF": true,
+        "FY": true
+      }
     }
   }
-}
+}/* ميزان البناء — نشرة الأسعار اليومية · Reality Engineer */
+window.MIZAN_LIVE={"date":"
