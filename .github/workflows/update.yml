@@ -1,0 +1,28 @@
+name: تحديث أسعار ميزان البناء
+on:
+  schedule:
+    - cron: "30 4 * * *"   # 8:30 الصبح بتوقيت دبي، كل يوم
+  workflow_dispatch: {}
+  push:
+    paths: ["data/overrides.json"]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, registry-url: "https://registry.npmjs.org" }
+      - id: run
+        run: node scripts/update.mjs
+      - if: steps.run.outputs.changed == '1'
+        run: |
+          git config user.name "mizan-bot"; git config user.email "bot@users.noreply.github.com"
+          npm version patch --no-git-tag-version
+          git add -A && git commit -m "أسعار $(date -u +%F)" && git push
+          npm publish --access public
+          sleep 20
+          curl -s "https://purge.jsdelivr.net/npm/mizan-bina-prices@latest/prices.js" || true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
