@@ -1,7 +1,7 @@
 // ميزان البناء — تحديث الأسعار اليومي (من غير أي تدخل)
-// مصر: متوسط مصانع الحديد + متوسط الأسمنت من النشرات — السعودية والإمارات: صفحات متاجر بتحدّث سعر الطن
+// مصر: نشرات الحديد والأسمنت — السعودية والإمارات: صفحات متاجر بتحدّث سعر الطن
 import fs from "node:fs";
-import {text, parseBrands, parseCement, pagePrices, EN_BRAND} from "./parse.mjs";
+import {text, parseBrands, parseCement, pagePrices, pageMax, EN_BRAND} from "./parse.mjs";
 const TODAY = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 10);
 const cur = JSON.parse(fs.readFileSync("data/current.json", "utf8"));
 const ovr = JSON.parse(fs.readFileSync("data/overrides.json", "utf8"));
@@ -67,26 +67,30 @@ async function steelOf(c, queries, factor, minBrands, maxAgeH) {
 }
 // مصادر مباشرة: صفحات متاجر بتحدّث سعر الطن
 const SHOPS = {
-  SA: [["الراجحي", "https://www.madar.com/ar_SA/rajhi-steel-rebar.html"], ["سابك", "https://www.madar.com/ar_SA/hadeed-steel-rebar.html"]],
-  AE: [["حديد الإمارات 12مم", "https://www.fepy.com/emirates-steel-12mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"],
-       ["حديد الإمارات 16مم", "https://www.fepy.com/emirates-steel-16mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"]],
+  SA: {label: "مدار", labelEn: "Madar", mode: "median", factor: 1, note: "", note_en: "", urls: [
+    ["الراجحي", "https://www.madar.com/ar_SA/rajhi-steel-rebar.html"],
+    ["سابك", "https://www.madar.com/ar_SA/hadeed-steel-rebar.html"]]},
+  AE: {label: "Fepy", labelEn: "Fepy", mode: "max", factor: 0.67, note: " (مؤشر تجزئة معاير على سعر المصنع)", note_en: " (retail index, calibrated to mill price)", urls: [
+    ["حديد الإمارات 12مم", "https://www.fepy.com/emirates-steel-12mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"],
+    ["حديد الإمارات 16مم", "https://www.fepy.com/emirates-steel-16mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"]]},
 };
-const SHOP_NAME = {SA: "مدار", AE: "Fepy"};
-async function shopsOf(c, factor = 1) {
+async function shopsOf(c) {
+  const S = SHOPS[c]; if (!S) return null;
   const per = {};
-  for (const [brand, url] of SHOPS[c] || []) {
+  for (const [brand, url] of S.urls) {
     try {
-      const v = pagePrices(text(await get(url)), c);
-      log(`${c} shop ${brand}: ${v.length} prices`);
-      if (v.length) per[brand] = median(v);
+      const t = text(await get(url));
+      const x = S.mode === "max" ? pageMax(t, c) : median(pagePrices(t, c));
+      log(`${c} shop ${brand}: ${isFinite(x) ? x : "none"}`);
+      if (isFinite(x)) per[brand] = x;
     } catch (e) { log(`${c} shop failed ${brand}: ${e.message.slice(0, 50)}`); }
   }
   const vals = Object.entries(per);
   if (!vals.length) return null;
-  const v = Math.round(vals.reduce((s, [, x]) => s + x, 0) / vals.length * factor / 10) * 10;
+  const v = Math.round(vals.reduce((s, [, x]) => s + x, 0) / vals.length * S.factor / 10) * 10;
   return {v,
-    src_ar: `${SHOP_NAME[c]} ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
-    src_en: `${SHOP_NAME[c] === "مدار" ? "Madar" : SHOP_NAME[c]} ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
+    src_ar: `${S.label} ${TODAY}${S.note}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
+    src_en: `${S.labelEn} ${TODAY}${S.note_en}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
 }
 async function cementEG() {
   const all = [];
@@ -109,8 +113,7 @@ if (!process.env.MIZAN_OFFLINE) {
   try { auto.EG.steel = await steelOf("EG", ["أسعار الحديد اليوم عز بشاي الجارحي", "سعر الحديد اليوم في مصر الطن"], 1, 4, 48); } catch (e) { log("EG steel failed " + e.message); }
   try { auto.EG.cement = await cementEG(); } catch (e) { log("EG cement failed " + e.message); }
   try { auto.SA.steel = await shopsOf("SA"); } catch (e) { log("SA shops failed " + e.message); }
-  try { auto.AE.steel = await shopsOf("AE", 1.08); } catch (e) { log("AE shops failed " + e.message); }
-  if (!auto.AE.steel) { try { auto.AE.steel = await steelOf("AE", ["أسعار حديد التسليح في الإمارات درهم للطن", "Emirates Steel rebar price AED per ton"], 1.08, 1, 35 * 24); } catch (e) { log("AE steel failed " + e.message); } }
+  try { auto.AE.steel = await shopsOf("AE"); } catch (e) { log("AE shops failed " + e.message); }
 }
 let checked = false, changed = false;
 const LIMIT = {EG: 0.08, AE: 0.12, SA: 0.12};
