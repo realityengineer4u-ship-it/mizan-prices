@@ -47,6 +47,11 @@ export function parseCement(t) {
   return vals;
 }
 
+export function pageMax(t, c) {
+  const v = pagePrices(t, c);
+  return v.length ? Math.max(...v) : NaN;
+}
+
 /* ---------- أسعار الوقود (بتحرك تكلفة النقل والحفر) ---------- */
 /* زي toNum بس بيحافظ على الكسر العشري — سعر اللتر بيبقى 20.50 مش 20 */
 function decNum(raw) {
