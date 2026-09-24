@@ -1,20 +1,26 @@
-2026-09-24T06:26:41.796Z
-feed ok (0 items) www.bing.com
-feed ok (7 items) news.google.com
-steel article 0 hits: https://news.google.com/rss/articles/CBMiUkFVX3lxTFA4UW0tTzdudEFJVWI5Mk5CcWRLNjZUV3NGN1hQb
-steel article 0 hits: https://news.google.com/rss/articles/CBMitgNBVV95cUxOdkFtU1FBRFNnXzlwdDNKdmwtejE1S1d4Qk5XS
-steel article 0 hits: https://news.google.com/rss/articles/CBMiTEFVX3lxTE9UQW1HNTVTZzFSQ1FaUG92UzZ3OGttTWZEYlhlQ
-steel article 0 hits: https://news.google.com/rss/articles/CBMixANBVV95cUxNS2dEVU9FaFcyQVNjY1BpT1ZuOXdWcWJIemdiM
-steel article 0 hits: https://news.google.com/rss/articles/CBMi3gNBVV95cUxPcU81V1NnaVJuZ0EwQy1wMXdtN1hNZm4zZkhUT
-steel article 0 hits: https://news.google.com/rss/articles/CBMizAJBVV95cUxOdzAtQ0Q2T3JobjBkeG1YYVBjVzNzQVhjaUY3N
-steel article 0 hits: https://news.google.com/rss/articles/CBMiREFVX3lxTE1PWGtvUFZBT0lkb3RPQ2VxZ3FTYVZCQTZYbXY3S
-steel: not enough companies {}
-feed ok (6 items) www.bing.com
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=6ab4c2a109e8412c9097d06
-cement: not enough data []
-CHANGED=0 date=2026-09-22 auto=
+2026-09-24T06:31:31.327Z
+feed ok (10 items) www.bing.com -> www.bing.com
+feed ok (0 items) news.google.com -> 
+steel article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+skip 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc14&url=https%3a%2f%2fwww.mubasher.info%2fnews%2f4675983%2f%25D8%25A3%25D8%25B3%25D8%25B9%25D8%25A7%25D8%25B1-%25D8%25AD%25D8%25AF%25D9%258A%25D8%25AF-%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B3%25D9%2584%25D9%258A%25D8%25AD-%25D9%2581%25D9%258A-%25D9%2585%25D8%25B5%25D8%25B1-%25D8%25A7%25D9%2584%25D9%258A%25D9%2588%25D9%2585%2f&c=17968896369193566812&mkt=ar-eg
+steel article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+steel article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3b9431e47a784082afa9ecddc1
+feed ok (6 items) www.bing.com -> www.bing.com
+feed ok (2 items) www.bing.com -> www.bing.com
+feed ok (0 items) news.google.com -> 
+cement article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b
+cement article 8 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b
+cement article 1 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b
+cement article 10 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b
+skip 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b5&url=https%3a%2f%2fwww.alwafd.news%2f5964306&c=18117365422627631753&mkt=ar-eg
+cement article 1 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3bfc02d498ebebb898f43bc17b
+cement article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3c0a72446048c53d91455d8c4f
+cement article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4c3c0a72446048c53d91455d8c4f
+REJECT EG.cement: 4200 -> 3850 (8.3%)
+CHANGED=1 date=2026-09-24 auto=steel,cement
