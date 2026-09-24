@@ -29,9 +29,9 @@
  },
  "AE": {
   "steel": {
-   "v": 3150,
-   "src_ar": "Emirates Steel · سبتمبر 2026",
-   "src_en": "Emirates Steel · September 2026"
+   "v": 3240,
+   "src_ar": "Fepy 2026-09-24 (مؤشر تجزئة معاير على سعر المصنع): حديد الإمارات 12مم 4,692 · حديد الإمارات 16مم 4,965",
+   "src_en": "Fepy 2026-09-24 (retail index, calibrated to mill price): حديد الإمارات 12مم 4,692 · حديد الإمارات 16مم 4,965"
   },
   "readymix": {
    "v": 350,
