@@ -1,34 +1,34 @@
-2026-09-24T08:52:47.893Z
+2026-09-24T08:58:51.649Z
 feed www.bing.com (12)
 feed news.google.com (0)
-EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
-EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e4cfe4c
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=Fex
+EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
+EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ab4e63b6be
 feed www.bing.com (7)
 feed www.bing.com (2)
 feed news.google.com (0)
 feed news.google.com (0)
 cement 0 hits
-cement 1 hits
-cement 4 hits
 cement 8 hits
 cement 1 hits
 cement 10 hits
-cement 1 hits
-cement 0 hits
 cement 4 hits
-SA shop الراجحي: 21 prices
-SA shop سابك: 20 prices
-AE shop حديد الإمارات 12مم: 22 prices
-AE shop حديد الإمارات 16مم: 14 prices
+cement 1 hits
+cement 1 hits
+cement 4 hits
+cement 0 hits
+SA shop الراجحي: 3141
+SA shop سابك: 3260
+AE shop حديد الإمارات 12مم: 4692
+AE shop حديد الإمارات 16مم: 4965
 REJECT EG.cement: 4200 -> 3850 (8.3%)
-CHANGED=1 date=2026-09-24 auto={"EG":"steel:39500,cement:3850","AE":"steel:3510","SA":"steel:3200"}
+CHANGED=1 date=2026-09-24 auto={"EG":"steel:38550,cement:3850","AE":"steel:3240","SA":"steel:3200"}
