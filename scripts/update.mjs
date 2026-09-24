@@ -1,15 +1,13 @@
-// ميزان البناء — تحديث الأسعار اليومي (بيشتغل على GitHub Actions، من غير أي تدخل)
-// بيقرا نشرات الأسعار المنشورة، يستخرج أسعار مصانع الحديد في مصر والإمارات والسعودية + متوسط الأسمنت في مصر،
-// يراجعها بحدود أمان، ويكتب data/current.json و prices.js. لو فيه تغيير بيطبع CHANGED=1
+// ميزان البناء — تحديث الأسعار اليومي (من غير أي تدخل)
+// مصر: متوسط مصانع الحديد + متوسط الأسمنت من النشرات — السعودية: صفحات متجر مدار — الإمارات: إعلانات المصانع الشهرية
 import fs from "node:fs";
-import {text, parseBrands, parseCement, EN_BRAND} from "./parse.mjs";
-const TODAY = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 10); // Asia/Dubai
+import {text, parseBrands, parseCement, pagePrices, EN_BRAND} from "./parse.mjs";
+const TODAY = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 10);
 const cur = JSON.parse(fs.readFileSync("data/current.json", "utf8"));
 const ovr = JSON.parse(fs.readFileSync("data/overrides.json", "utf8"));
 const UA = {"user-agent": "Mozilla/5.0 (MizanPriceBot; +https://www.youtube.com/@reality-engineer)"};
 const LOGS = [];
 const log = (...a) => { const s = a.map(x => typeof x === "string" ? x : JSON.stringify(x)).join(" "); LOGS.push(s); console.log(s); };
-
 async function get(url) {
   const r = await fetch(url, {headers: UA, redirect: "follow", signal: AbortSignal.timeout(20000)});
   if (!r.ok) throw new Error(r.status + " " + url); return r.text();
@@ -19,7 +17,7 @@ const FEEDS = [
   q => "https://news.google.com/rss/search?hl=ar&gl=EG&ceid=EG:ar&q=" + encodeURIComponent(q + " when:3d"),
 ];
 const unesc = s => s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
-function realLink(u) {                       // روابط جوجل وبينج لفة على المقال
+function realLink(u) {
   u = unesc(u || "");
   const g = u.match(/news\.google\.com\/rss\/articles\/([A-Za-z0-9_-]+)/);
   if (g) {
@@ -41,7 +39,7 @@ async function news(queries, maxAgeH = 48) {
     const url = mk(q);
     try {
       const items = rssItems(await get(url)).filter(i => i.link && (!+i.date || Date.now() - i.date < maxAgeH * 3600e3));
-      log(`feed ${new URL(url).host} (${items.length}) -> ${[...new Set(items.map(i => { try { return new URL(i.link).host; } catch (e) { return "?"; } }))].join(", ").slice(0, 110)}`);
+      log(`feed ${new URL(url).host} (${items.length})`);
       out.push(...items);
       if (out.length >= 10) break;
     } catch (e) { log(`feed failed ${new URL(url).host}: ${e.message}`); }
@@ -50,36 +48,52 @@ async function news(queries, maxAgeH = 48) {
   return out.filter(i => !seen.has(i.link) && seen.add(i.link)).slice(0, 12);
 }
 const median = a => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : NaN; };
-
-// أسعار الحديد في سوق واحد: متوسط المصانع × معامل (ضريبة + توريد)
+// أسعار مصانع الحديد من النشرات: متوسط × معامل (ضريبة + توريد)
 async function steelOf(c, queries, factor, minBrands, maxAgeH) {
   const per = {};
   for (const it of await news(queries, maxAgeH)) {
     try {
       const p = parseBrands(text(await get(it.link)), c);
-      log(`${c} article ${Object.keys(p).length} hits: ${it.link.slice(0, 80)}`);
-      if (Object.keys(p).length >= 2) for (const [k, v] of Object.entries(p)) (per[k] = per[k] || []).push(v);
-    } catch (e) { log(`${c} skip: ${e.message.slice(0, 60)}`); }
+      log(`${c} article ${Object.keys(p).length} hits: ${it.link.slice(0, 70)}`);
+      if (Object.keys(p).length >= 1) for (const [k, v] of Object.entries(p)) (per[k] = per[k] || []).push(v);
+    } catch (e) { log(`${c} skip: ${e.message.slice(0, 50)}`); }
   }
   const vals = Object.entries(per).map(([k, a]) => [k, median(a)]);
   if (vals.length < minBrands) { log(`${c} steel: not enough mills`, JSON.stringify(per)); return null; }
   const avg = vals.reduce((s, [, v]) => s + v, 0) / vals.length * factor;
   const v = Math.round(avg / (c === "EG" ? 50 : 10)) * (c === "EG" ? 50 : 10);
-  const ar = vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · ");
-  const en = vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ");
-  return {v, src_ar: `نشرات ${TODAY}: ${ar}`, src_en: `Bulletins ${TODAY}: ${en}`};
+  return {v,
+    src_ar: `نشرات ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
+    src_en: `Bulletins ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
+}
+// مصادر مباشرة: صفحات متاجر بتحدّث سعر الطن يوميًا
+const SHOPS = {SA: [["الراجحي", "https://www.madar.com/ar_SA/rajhi-steel-rebar.html"], ["سابك", "https://www.madar.com/ar_SA/hadeed-steel-rebar.html"]]};
+async function shopsOf(c) {
+  const per = {};
+  for (const [brand, url] of SHOPS[c] || []) {
+    try {
+      const v = pagePrices(text(await get(url)), c);
+      log(`${c} shop ${brand}: ${v.length} prices`);
+      if (v.length) per[brand] = median(v);
+    } catch (e) { log(`${c} shop failed ${brand}: ${e.message.slice(0, 50)}`); }
+  }
+  const vals = Object.entries(per);
+  if (!vals.length) return null;
+  const v = Math.round(vals.reduce((s, [, x]) => s + x, 0) / vals.length / 10) * 10;
+  return {v,
+    src_ar: `مدار ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
+    src_en: `Madar ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
 }
 async function cementEG() {
   const all = [];
   for (const it of await news(["سعر الأسمنت اليوم متوسط الطن", "أسعار الأسمنت اليوم في مصر"])) {
-    try { const cc = parseCement(text(await get(it.link))); log(`cement ${cc.length} hits: ${it.link.slice(0, 80)}`); all.push(...cc); } catch (e) { log("cement skip: " + e.message.slice(0, 60)); }
+    try { const cc = parseCement(text(await get(it.link))); log(`cement ${cc.length} hits`); all.push(...cc); } catch (e) { log("cement skip: " + e.message.slice(0, 50)); }
   }
   if (all.length < 2) { log("cement: not enough data", all); return null; }
   const v = Math.round(median(all) / 50) * 50;
   return {v, src_ar: `نشرات ${TODAY}: متوسط الطن ~${v.toLocaleString("en-US")}`, src_en: `Bulletins ${TODAY}: average ~${v.toLocaleString("en-US")} per ton`};
 }
-
-// حدود الأمان لكل سوق: مصر يومية (8%)، الخليج شهرية (12%)
+// حدود الأمان: مصر 8% في اليوم، الخليج 12%، والتعديل اليدوي 25%
 function guard(c, k, n, maxPct) {
   const o = cur[c] && cur[c][k]; if (!o || !n) return false;
   const d = Math.abs(n.v - o.v) / o.v;
@@ -88,10 +102,11 @@ function guard(c, k, n, maxPct) {
 }
 const auto = {EG: {}, AE: {}, SA: {}};
 if (!process.env.MIZAN_OFFLINE) {
-  try { auto.EG.steel = await steelOf("EG", ["أسعار الحديد اليوم عز بشاي الجارحي", "سعر الحديد اليوم في مصر الطن", "أسعار الحديد والأسمنت اليوم"], 1, 4, 48); } catch (e) { log("EG steel failed " + e.message); }
+  try { auto.EG.steel = await steelOf("EG", ["أسعار الحديد اليوم عز بشاي الجارحي", "سعر الحديد اليوم في مصر الطن"], 1, 4, 48); } catch (e) { log("EG steel failed " + e.message); }
   try { auto.EG.cement = await cementEG(); } catch (e) { log("EG cement failed " + e.message); }
-  try { auto.AE.steel = await steelOf("AE", ["أسعار الحديد اليوم في الإمارات حديد الإمارات كونارس", "سعر طن حديد التسليح في الإمارات درهم", "Emirates Steel rebar price per ton"], 1.08, 2, 21 * 24); } catch (e) { log("AE steel failed " + e.message); }
-  try { auto.SA.steel = await steelOf("SA", ["أسعار الحديد اليوم في السعودية سابك الراجحي", "سعر طن الحديد اليوم السعودية ريال"], 1, 2, 21 * 24); } catch (e) { log("SA steel failed " + e.message); }
+  try { auto.SA.steel = await shopsOf("SA"); } catch (e) { log("SA shops failed " + e.message); }
+  if (!auto.SA.steel) { try { auto.SA.steel = await steelOf("SA", ["أسعار الحديد اليوم في السعودية سابك الراجحي"], 1, 2, 21 * 24); } catch (e) { log("SA steel failed " + e.message); } }
+  try { auto.AE.steel = await steelOf("AE", ["أسعار حديد التسليح في الإمارات درهم للطن", "حديد الإمارات تعلن أسعار حديد التسليح لشهر", "Emirates Steel rebar price AED per ton"], 1.08, 1, 35 * 24); } catch (e) { log("AE steel failed " + e.message); }
 }
 let checked = false, changed = false;
 const LIMIT = {EG: 0.08, AE: 0.12, SA: 0.12};
