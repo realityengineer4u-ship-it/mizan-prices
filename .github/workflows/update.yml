@@ -16,13 +16,17 @@ jobs:
         with: { node-version: 20, registry-url: "https://registry.npmjs.org" }
       - id: run
         run: node scripts/update.mjs
-      - if: steps.run.outputs.changed == '1'
+      - if: always()
         run: |
           git config user.name "mizan-bot"; git config user.email "bot@users.noreply.github.com"
-          npm version patch --no-git-tag-version
-          git add -A && git commit -m "أسعار $(date -u +%F)" && git push
-          npm publish --access public
-          sleep 20
-          curl -s "https://purge.jsdelivr.net/npm/mizan-bina-prices@latest/prices.js" || true
+          if [ "${{ steps.run.outputs.changed }}" = "1" ]; then npm version patch --no-git-tag-version; fi
+          git add -A
+          git commit -m "تشغيل $(date -u +%F)" || echo "لا تغيير"
+          git push || true
+          if [ "${{ steps.run.outputs.changed }}" = "1" ]; then
+            npm publish --access public
+            sleep 20
+            curl -s "https://purge.jsdelivr.net/npm/mizan-bina-prices@latest/prices.js" || true
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
