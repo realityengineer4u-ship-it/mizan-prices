@@ -13,20 +13,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20, registry-url: "https://registry.npmjs.org" }
+        with: { node-version: 22, registry-url: "https://registry.npmjs.org" }
       - id: run
         run: node scripts/update.mjs
-      - if: always()
+      - name: publish + commit
+        if: always()
         run: |
+          set +e
           git config user.name "mizan-bot"; git config user.email "bot@users.noreply.github.com"
-          if [ "${{ steps.run.outputs.changed }}" = "1" ]; then npm version patch --no-git-tag-version; fi
+          if [ "${{ steps.run.outputs.changed }}" = "1" ]; then
+            npm version patch --no-git-tag-version
+            npm publish --access public > data/npm.log 2>&1
+            echo "npm exit: $?" >> data/npm.log
+            sleep 15
+            curl -s "https://purge.jsdelivr.net/npm/mizan-bina-prices@latest/prices.js" >> data/npm.log
+          fi
           git add -A
           git commit -m "تشغيل $(date -u +%F)" || echo "لا تغيير"
           git push || true
-          if [ "${{ steps.run.outputs.changed }}" = "1" ]; then
-            npm publish --access public
-            sleep 20
-            curl -s "https://purge.jsdelivr.net/npm/mizan-bina-prices@latest/prices.js" || true
-          fi
+          exit 0
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
