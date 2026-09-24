@@ -1,5 +1,5 @@
 // ميزان البناء — تحديث الأسعار اليومي (من غير أي تدخل)
-// مصر: متوسط مصانع الحديد + متوسط الأسمنت من النشرات — السعودية: صفحات متجر مدار — الإمارات: إعلانات المصانع الشهرية
+// مصر: متوسط مصانع الحديد + متوسط الأسمنت من النشرات — السعودية والإمارات: صفحات متاجر بتحدّث سعر الطن
 import fs from "node:fs";
 import {text, parseBrands, parseCement, pagePrices, EN_BRAND} from "./parse.mjs";
 const TODAY = new Date(Date.now() + 4 * 3600e3).toISOString().slice(0, 10);
@@ -48,14 +48,13 @@ async function news(queries, maxAgeH = 48) {
   return out.filter(i => !seen.has(i.link) && seen.add(i.link)).slice(0, 12);
 }
 const median = a => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : NaN; };
-// أسعار مصانع الحديد من النشرات: متوسط × معامل (ضريبة + توريد)
 async function steelOf(c, queries, factor, minBrands, maxAgeH) {
   const per = {};
   for (const it of await news(queries, maxAgeH)) {
     try {
       const p = parseBrands(text(await get(it.link)), c);
       log(`${c} article ${Object.keys(p).length} hits: ${it.link.slice(0, 70)}`);
-      if (Object.keys(p).length >= 1) for (const [k, v] of Object.entries(p)) (per[k] = per[k] || []).push(v);
+      for (const [k, v] of Object.entries(p)) (per[k] = per[k] || []).push(v);
     } catch (e) { log(`${c} skip: ${e.message.slice(0, 50)}`); }
   }
   const vals = Object.entries(per).map(([k, a]) => [k, median(a)]);
@@ -66,9 +65,14 @@ async function steelOf(c, queries, factor, minBrands, maxAgeH) {
     src_ar: `نشرات ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
     src_en: `Bulletins ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
 }
-// مصادر مباشرة: صفحات متاجر بتحدّث سعر الطن يوميًا
-const SHOPS = {SA: [["الراجحي", "https://www.madar.com/ar_SA/rajhi-steel-rebar.html"], ["سابك", "https://www.madar.com/ar_SA/hadeed-steel-rebar.html"]]};
-async function shopsOf(c) {
+// مصادر مباشرة: صفحات متاجر بتحدّث سعر الطن
+const SHOPS = {
+  SA: [["الراجحي", "https://www.madar.com/ar_SA/rajhi-steel-rebar.html"], ["سابك", "https://www.madar.com/ar_SA/hadeed-steel-rebar.html"]],
+  AE: [["حديد الإمارات 12مم", "https://www.fepy.com/emirates-steel-12mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"],
+       ["حديد الإمارات 16مم", "https://www.fepy.com/emirates-steel-16mm-x-12mtr-reinforcing-carbon-steel-bar-steel-rod-for-residential-and-commercial-projects-per-ton"]],
+};
+const SHOP_NAME = {SA: "مدار", AE: "Fepy"};
+async function shopsOf(c, factor = 1) {
   const per = {};
   for (const [brand, url] of SHOPS[c] || []) {
     try {
@@ -79,10 +83,10 @@ async function shopsOf(c) {
   }
   const vals = Object.entries(per);
   if (!vals.length) return null;
-  const v = Math.round(vals.reduce((s, [, x]) => s + x, 0) / vals.length / 10) * 10;
+  const v = Math.round(vals.reduce((s, [, x]) => s + x, 0) / vals.length * factor / 10) * 10;
   return {v,
-    src_ar: `مدار ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
-    src_en: `Madar ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
+    src_ar: `${SHOP_NAME[c]} ${TODAY}: ` + vals.map(([k, x]) => k + " " + x.toLocaleString("en-US")).join(" · "),
+    src_en: `${SHOP_NAME[c] === "مدار" ? "Madar" : SHOP_NAME[c]} ${TODAY}: ` + vals.map(([k, x]) => (EN_BRAND[k] || k) + " " + x.toLocaleString("en-US")).join(" · ")};
 }
 async function cementEG() {
   const all = [];
@@ -105,8 +109,8 @@ if (!process.env.MIZAN_OFFLINE) {
   try { auto.EG.steel = await steelOf("EG", ["أسعار الحديد اليوم عز بشاي الجارحي", "سعر الحديد اليوم في مصر الطن"], 1, 4, 48); } catch (e) { log("EG steel failed " + e.message); }
   try { auto.EG.cement = await cementEG(); } catch (e) { log("EG cement failed " + e.message); }
   try { auto.SA.steel = await shopsOf("SA"); } catch (e) { log("SA shops failed " + e.message); }
-  if (!auto.SA.steel) { try { auto.SA.steel = await steelOf("SA", ["أسعار الحديد اليوم في السعودية سابك الراجحي"], 1, 2, 21 * 24); } catch (e) { log("SA steel failed " + e.message); } }
-  try { auto.AE.steel = await steelOf("AE", ["أسعار حديد التسليح في الإمارات درهم للطن", "حديد الإمارات تعلن أسعار حديد التسليح لشهر", "Emirates Steel rebar price AED per ton"], 1.08, 1, 35 * 24); } catch (e) { log("AE steel failed " + e.message); }
+  try { auto.AE.steel = await shopsOf("AE", 1.08); } catch (e) { log("AE shops failed " + e.message); }
+  if (!auto.AE.steel) { try { auto.AE.steel = await steelOf("AE", ["أسعار حديد التسليح في الإمارات درهم للطن", "Emirates Steel rebar price AED per ton"], 1.08, 1, 35 * 24); } catch (e) { log("AE steel failed " + e.message); } }
 }
 let checked = false, changed = false;
 const LIMIT = {EG: 0.08, AE: 0.12, SA: 0.12};
