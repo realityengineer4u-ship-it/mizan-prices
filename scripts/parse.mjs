@@ -1,9 +1,11 @@
 // استخراج الأسعار من نص المقالات
-export const toNum = s => +String(s).replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[,٬.\s]/g, "");
+export const toNum = s => {
+  const t = String(s).replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[٫]/g, ".");
+  return +t.replace(/[,٬\s]/g, "").replace(/\.\d{1,2}$/, "");
+};
 export const text = html => html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/\s+/g, " ");
-const N5 = "([0-9٠-٩]{2}[,٬.]?[0-9٠-٩]{3})";        // عشرات الآلاف (مصر)
-const N4 = "([0-9٠-٩][,٬.]?[0-9٠-٩]{3})";           // آلاف (الإمارات والسعودية)
-// مصانع الحديد في كل سوق + النطاق المنطقي للطن
+const N5 = "([0-9٠-٩]{2}[,٬.]?[0-9٠-٩]{3})";
+const N4 = "([0-9٠-٩][,٬.]?[0-9٠-٩]{3})";
 export const BRANDS = {
   EG: {min: 20000, max: 80000, pat: N5, list: {
     "عز": /عز/, "بشاي": /بشاي/, "السويس": /السويس/, "الجارحي": /الجارحي/, "المصريين": /المصريين/, "المراكبي": /المراكبي/}},
@@ -19,7 +21,6 @@ export const EN_BRAND = {
   "حديد الإمارات": "Emirates Steel", "كونارس": "Conares", "الاتحاد": "Union Iron", "الجزيرة": "Al Jazeera Steel",
   "سابك": "SABIC", "الراجحي": "Al Rajhi", "اليمامة": "Yamama",
 };
-// أسعار المصانع من نص مقال واحد: اسم المصنع وبعده في حدود 60 حرف رقم داخل النطاق
 export function parseBrands(t, c) {
   const B = BRANDS[c], out = {};
   for (const [k, re] of Object.entries(B.list)) {
@@ -29,7 +30,12 @@ export function parseBrands(t, c) {
   return out;
 }
 export const parseSteel = t => parseBrands(t, "EG");
-// متوسط الأسمنت: "متوسط ... 4,184"
+export function pagePrices(t, c) {
+  const B = BRANDS[c], out = [];
+  const re = new RegExp(B.pat, "g"); let m;
+  while ((m = re.exec(t))) { const v = toNum(m[1]); if (v >= B.min && v <= B.max) out.push(v); }
+  return out;
+}
 export function parseCement(t) {
   const vals = [];
   const re = /متوسط[^0-9٠-٩]{0,50}([0-9٠-٩][,٬.]?[0-9٠-٩]{3})/g; let m;
