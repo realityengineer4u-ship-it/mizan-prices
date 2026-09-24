@@ -2,9 +2,9 @@
  "date": "2026-09-24",
  "EG": {
   "steel": {
-   "v": 38550,
-   "src_ar": "نشرات 2026-09-24: عز 40,079 · بشاي 39,200 · السويس 38,950 · الجارحي 38,100 · المصريين 37,350 · المراكبي 37,500",
-   "src_en": "Bulletins 2026-09-24: Ezz 40,079 · Beshay 39,200 · Suez 38,950 · El Garhy 38,100 · Egyptian Steel 37,350 · El Marakby 37,500"
+   "v": 39750,
+   "src_ar": "نشرات 2026-09-24: عز 40,850 · بشاي 40,200 · السويس 39,950 · الجارحي 39,200 · المصريين 38,500 · المراكبي 39,800",
+   "src_en": "Bulletins 2026-09-24: Ezz 40,850 · Beshay 40,200 · Suez 39,950 · El Garhy 39,200 · Egyptian Steel 38,500 · El Marakby 39,800"
   },
   "cement": {
    "v": 4200,
@@ -30,8 +30,8 @@
  "AE": {
   "steel": {
    "v": 3150,
-   "src_ar": "Emirates Steel سبتمبر 2026",
-   "src_en": "Emirates Steel September 2026"
+   "src_ar": "Emirates Steel — سبتمبر 2026",
+   "src_en": "Emirates Steel — September 2026"
   },
   "readymix": {
    "v": 350,
