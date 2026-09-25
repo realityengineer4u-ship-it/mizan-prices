@@ -127,6 +127,35 @@ async function dieselOf(c) {
   return {v, src_ar: `سعر الوقود المعلن ${TODAY}: ${v} للتر`, src_en: `Published fuel price ${TODAY}: ${v}/litre`};
 }
 
+// ---------- الهند: السيخ من OfBusiness (بدون GST) + الديزل من 3 مصادر ----------
+async function inSteel() {
+  const vals = [];
+  for (const url of ["https://www.ofbusiness.com/prices/mild-steel/primary-tmt"]) {
+    try {
+      const t = text(await get(url));
+      const re = /₹\s*([0-9]{2},[0-9]{3})\s*\/\s*MT/g; let m;
+      while ((m = re.exec(t))) { const v = +m[1].replace(/,/g, ""); if (v >= 40000 && v <= 90000) vals.push(v); }
+      log(`IN steel ${vals.length} prices: ${url}`);
+    } catch (e) { log("IN steel skip: " + e.message); }
+  }
+  if (!vals.length) { log("IN steel: no data"); return null; }
+  const v = Math.round(median(vals) * 1.18 / 50) * 50;   // + GST 18%
+  return {v, src_ar: `OfBusiness ${TODAY}: TMT Fe500D ماركات رئيسية ${median(vals).toLocaleString("en-US")} + GST 18%`, src_en: `OfBusiness ${TODAY}: primary TMT Fe500D ${median(vals).toLocaleString("en-US")} + 18% GST`};
+}
+async function inDiesel() {
+  const vals = [];
+  const SRC = [["https://www.goodreturns.in/diesel-price.html", /New Delhi\s*\|?\s*₹\s*([0-9]+\.[0-9]{1,2})/i],
+               ["https://upstox.com/diesel-price/diesel-price-in-delhi/", /diesel price in delhi today is\s*₹\s*([0-9]+\.[0-9]{1,2})/i],
+               ["https://www.cardekho.com/diesel-price", /₹\s*([0-9]+\.[0-9]{1,2})\s*per litre in New Delhi/i]];
+  for (const [url, re] of SRC) {
+    try { const m = re.exec(text(await get(url))); if (m) { const v = +m[1]; if (v > 60 && v < 150) { vals.push(v); log(`IN diesel ${v}: ${url}`); } } }
+    catch (e) { log("IN diesel skip: " + e.message.slice(0, 60)); }
+  }
+  if (vals.length < 2) { log("IN diesel: not enough data"); return null; }
+  const v = median(vals);
+  return {v, src_ar: `سعر الديزل في دلهي ${TODAY}: ${v}`, src_en: `Delhi diesel price ${TODAY}: ${v}`};
+}
+
 // حدود الأمان لكل سوق: مصر يومية (8%)، الخليج شهرية (12%)
 function guard(c, k, n, maxPct) {
   const o = cur[c] && cur[c][k]; if (!o || !n) return false;
@@ -134,7 +163,7 @@ function guard(c, k, n, maxPct) {
   if (!(n.v > 0) || d > maxPct) { log(`REJECT ${c}.${k}: ${o.v} -> ${n.v} (${(d * 100).toFixed(1)}%)`); return false; }
   return true;
 }
-const auto = {EG: {}, AE: {}, SA: {}};
+const auto = {EG: {}, AE: {}, SA: {}, IN: {}};
 if (!process.env.MIZAN_OFFLINE) {
   try { auto.EG.steel = await steelOf("EG", ["أسعار الحديد اليوم عز بشاي الجارحي", "سعر الحديد اليوم في مصر الطن", "أسعار الحديد والأسمنت اليوم"], 1, 4, 48); } catch (e) { log("EG steel failed " + e.message); }
   try { auto.EG.cement = await cementEG(); } catch (e) { log("EG cement failed " + e.message); }
@@ -142,6 +171,8 @@ if (!process.env.MIZAN_OFFLINE) {
   if (!auto.AE.steel) try { auto.AE.steel = await steelOf("AE", ["أسعار الحديد اليوم في الإمارات حديد الإمارات كونارس", "سعر طن حديد التسليح في الإمارات درهم", "Emirates Steel rebar price per ton", "حديد الإمارات تعلن أسعار حديد التسليح لشهر"], 1.08, 1, 35 * 24); } catch (e) { log("AE steel failed " + e.message); }
   try { auto.SA.steel = await shopsOf("SA"); } catch (e) { log("SA shops failed " + e.message); }
   for (const c of ["EG", "AE", "SA"]) { try { const d = await dieselOf(c); if (d) auto[c].diesel = d; } catch (e) { log(c + " diesel failed " + e.message); } }
+  try { const v = await inSteel(); if (v) auto.IN.steel = v; } catch (e) { log("IN steel failed " + e.message); }
+  try { const v = await inDiesel(); if (v) auto.IN.diesel = v; } catch (e) { log("IN diesel failed " + e.message); }
   if (!auto.SA.steel) { try { auto.SA.steel = await steelOf("SA", ["أسعار الحديد اليوم في السعودية سابك الراجحي", "سعر طن الحديد اليوم السعودية ريال"], 1, 2, 21 * 24); } catch (e) { log("SA steel failed " + e.message); } }
 }
 let checked = false, changed = false;
@@ -151,15 +182,21 @@ const FUEL_SEED = {
   AE: {v: 4.30, src_ar: "لجنة أسعار الوقود الإماراتية — سبتمبر 2026", src_en: "UAE Fuel Price Committee — September 2026"},
   SA: {v: 1.79, src_ar: "أرامكو السعودية 2026", src_en: "Saudi Aramco 2026"}
 };
+const IN_SEED = {
+  steel:  {v: 73000, src_ar: "tmtpricetoday + OfBusiness سبتمبر 2026 — Tata/JSW/SAIL شامل GST", src_en: "tmtpricetoday + OfBusiness Sep 2026 — Tata/JSW/SAIL incl GST"},
+  diesel: {v: 95.2,  src_ar: "سعر دلهي سبتمبر 2026", src_en: "Delhi price, Sep 2026"}
+};
+if (!cur.IN) { cur.IN = {}; }
+for (const [k, v] of Object.entries(IN_SEED)) if (!cur.IN[k]) { cur.IN[k] = v; changed = true; checked = true; log(`IN ${k} seeded at ${v.v}`); }
 for (const c of ["EG", "AE", "SA"]) {
   if (cur[c] && !cur[c].diesel) { cur[c].diesel = FUEL_SEED[c]; changed = true; checked = true; log(`${c} diesel seeded at ${FUEL_SEED[c].v}`); }
 }
 
-const LIMIT = {EG: 0.08, AE: 0.12, SA: 0.12};
-for (const c of ["EG", "AE", "SA"]) for (const [k, n] of Object.entries(auto[c])) {
+const LIMIT = {EG: 0.08, AE: 0.12, SA: 0.12, IN: 0.08};
+for (const c of ["EG", "AE", "SA", "IN"]) for (const [k, n] of Object.entries(auto[c])) {
   if (guard(c, k, n, k === "diesel" ? 0.30 : LIMIT[c])) { checked = true; if (cur[c][k].v !== n.v || cur[c][k].src_ar !== n.src_ar) { cur[c][k] = n; changed = true; } }
 }
-for (const c of ["EG", "AE", "SA"]) for (const [k, n] of Object.entries(ovr[c] || {})) {
+for (const c of ["EG", "AE", "SA", "IN"]) for (const [k, n] of Object.entries(ovr[c] || {})) {
   if (guard(c, k, n, 0.25) && (cur[c][k].v !== n.v || cur[c][k].src_ar !== n.src_ar)) { cur[c][k] = {...cur[c][k], ...n}; changed = true; checked = true; }
 }
 if (checked && cur.date !== TODAY) { cur.date = TODAY; changed = true; }
