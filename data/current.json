@@ -75,5 +75,17 @@
    "src_ar": "أرامكو السعودية 2026",
    "src_en": "Saudi Aramco 2026"
   }
+ },
+ "IN": {
+  "steel": {
+   "v": 73150,
+   "src_ar": "OfBusiness 2026-09-25: TMT Fe500D ماركات رئيسية 62,000 + GST 18%",
+   "src_en": "OfBusiness 2026-09-25: primary TMT Fe500D 62,000 + 18% GST"
+  },
+  "diesel": {
+   "v": 95.2,
+   "src_ar": "سعر الديزل في دلهي 2026-09-25: 95.2",
+   "src_en": "Delhi diesel price 2026-09-25: 95.2"
+  }
  }
 }
