@@ -1,6 +1,6 @@
 {
   "name": "mizan-bina-prices",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Daily building-material price feed for Mizan (ميزان البناء) by Reality Engineer",
   "main": "prices.js",
   "files": [
