@@ -1,10 +1,10 @@
 {
- "date": "2026-10-29",
+ "date": "2026-10-30",
  "EG": {
   "steel": {
-   "v": 38800,
-   "src_ar": "نشرات 2026-10-29: عز 39,850 · بشاي 37,870 · السويس 39,950 · الجارحي 39,200 · المصريين 38,895 · المراكبي 36,890",
-   "src_en": "Bulletins 2026-10-29: Ezz 39,850 · Beshay 37,870 · Suez 39,950 · El Garhy 39,200 · Egyptian Steel 38,895 · El Marakby 36,890"
+   "v": 39650,
+   "src_ar": "نشرات 2026-10-30: بشاي 39,800 · المصريين 38,640 · المراكبي 39,400 · عز 40,850 · السويس 39,950 · الجارحي 39,200",
+   "src_en": "Bulletins 2026-10-30: Beshay 39,800 · Egyptian Steel 38,640 · El Marakby 39,400 · Ezz 40,850 · Suez 39,950 · El Garhy 39,200"
   },
   "cement": {
    "v": 4050,
@@ -28,8 +28,8 @@
   },
   "diesel": {
    "v": 20.5,
-   "src_ar": "سعر الوقود المعلن 2026-10-28: 20.5 للتر",
-   "src_en": "Published fuel price 2026-10-28: 20.5/litre"
+   "src_ar": "سعر الوقود المعلن 2026-10-30: 20.5 للتر",
+   "src_en": "Published fuel price 2026-10-30: 20.5/litre"
   }
  },
  "AE": {
@@ -79,13 +79,13 @@
  "IN": {
   "steel": {
    "v": 75500,
-   "src_ar": "OfBusiness 2026-10-29: TMT Fe500D ماركات رئيسية 64,000 + GST 18%",
-   "src_en": "OfBusiness 2026-10-29: primary TMT Fe500D 64,000 + 18% GST"
+   "src_ar": "OfBusiness 2026-10-30: TMT Fe500D ماركات رئيسية 64,000 + GST 18%",
+   "src_en": "OfBusiness 2026-10-30: primary TMT Fe500D 64,000 + 18% GST"
   },
   "diesel": {
    "v": 95.2,
-   "src_ar": "سعر الديزل في دلهي 2026-10-29: 95.2",
-   "src_en": "Delhi diesel price 2026-10-29: 95.2"
+   "src_ar": "سعر الديزل في دلهي 2026-10-30: 95.2",
+   "src_en": "Delhi diesel price 2026-10-30: 95.2"
   }
  }
 }
