@@ -1,15 +1,15 @@
 {
- "date": "2026-11-02",
+ "date": "2026-11-03",
  "EG": {
   "steel": {
    "v": 39750,
-   "src_ar": "نشرات 2026-11-02: عز 40,850 · بشاي 40,200 · السويس 39,950 · الجارحي 39,200 · المصريين 38,500 · المراكبي 39,800",
-   "src_en": "Bulletins 2026-11-02: Ezz 40,850 · Beshay 40,200 · Suez 39,950 · El Garhy 39,200 · Egyptian Steel 38,500 · El Marakby 39,800"
+   "src_ar": "نشرات 2026-11-03: عز 40,850 · بشاي 40,200 · السويس 39,950 · الجارحي 39,200 · المصريين 38,500 · المراكبي 39,800",
+   "src_en": "Bulletins 2026-11-03: Ezz 40,850 · Beshay 40,200 · Suez 39,950 · El Garhy 39,200 · Egyptian Steel 38,500 · El Marakby 39,800"
   },
   "cement": {
-   "v": 4000,
-   "src_ar": "نشرات 2026-11-02: متوسط الطن ~4,000",
-   "src_en": "Bulletins 2026-11-02: average ~4,000 per ton"
+   "v": 3950,
+   "src_ar": "نشرات 2026-11-03: متوسط الطن ~3,950",
+   "src_en": "Bulletins 2026-11-03: average ~3,950 per ton"
   },
   "brick": {
    "v": 4600,
@@ -28,8 +28,8 @@
   },
   "diesel": {
    "v": 20.5,
-   "src_ar": "سعر الوقود المعلن 2026-11-01: 20.5 للتر",
-   "src_en": "Published fuel price 2026-11-01: 20.5/litre"
+   "src_ar": "سعر الوقود المعلن 2026-11-03: 20.5 للتر",
+   "src_en": "Published fuel price 2026-11-03: 20.5/litre"
   }
  },
  "AE": {
@@ -78,14 +78,14 @@
  },
  "IN": {
   "steel": {
-   "v": 75500,
-   "src_ar": "OfBusiness 2026-11-02: TMT Fe500D ماركات رئيسية 64,000 + GST 18%",
-   "src_en": "OfBusiness 2026-11-02: primary TMT Fe500D 64,000 + 18% GST"
+   "v": 76450,
+   "src_ar": "OfBusiness 2026-11-03: TMT Fe500D ماركات رئيسية 64,800 + GST 18%",
+   "src_en": "OfBusiness 2026-11-03: primary TMT Fe500D 64,800 + 18% GST"
   },
   "diesel": {
    "v": 95.2,
-   "src_ar": "سعر الديزل في دلهي 2026-11-02: 95.2",
-   "src_en": "Delhi diesel price 2026-11-02: 95.2"
+   "src_ar": "سعر الديزل في دلهي 2026-11-03: 95.2",
+   "src_en": "Delhi diesel price 2026-11-03: 95.2"
   }
  }
 }
