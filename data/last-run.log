@@ -1,55 +1,64 @@
-2026-11-11T12:00:52.127Z
-feed www.bing.com (7) -> www.bing.com
-feed www.bing.com (3) -> www.bing.com
+2026-11-12T13:04:20.524Z
+feed www.bing.com (8) -> www.bing.com
+feed www.bing.com (4) -> www.bing.com
 feed news.google.com (0) -> 
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd3a5b443d80f95
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b942c2e1480e9b3e9
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b942c2e1480e9b3e9
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd3a5b443d80f95
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd3a5b443d80f95
-EG article 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd3a5b443d80f95
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd3a5b443d80f95
 EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd8e304723af8f1
-EG article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458dd8e304723af8f1
-feed www.bing.com (6) -> www.bing.com
-feed www.bing.com (3) -> www.bing.com
+EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b942c2e1480e9b3e9
+EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+EG skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+EG article 5 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94268bb4261b7494
+EG article 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94268bb4261b7494
+feed www.bing.com (9) -> www.bing.com
+feed www.bing.com (5) -> www.bing.com
 feed news.google.com (0) -> 
-feed news.google.com (0) -> 
-cement 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3d31f4e73b52a7
-cement 6 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3d31f4e73b52a7
-cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3d31f4e73b52a7
 cement skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3d31f4e73b52a7
 cement skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-cement 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3223b421db2977
-cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e3223b421db2977
+cement 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 4 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 3 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946954c483e9ea2a
+cement 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b946c6524a80a9d31
+cement skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
 cement skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
 AE shop failed حديد الإمارات 12مم: 429 https://www.fepy.com/emirates-steel-12mm-x-12m
 AE shop failed حديد الإمارات 16مم: 429 https://www.fepy.com/emirates-steel-16mm-x-12m
-feed www.bing.com (6) -> www.bing.com
-feed www.bing.com (4) -> www.bing.com
+feed www.bing.com (7) -> www.bing.com
+feed www.bing.com (5) -> www.bing.com
 feed news.google.com (0) -> 
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e81a104591b3120
 AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e81a104591b3120
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e81a104591b3120
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e81a104591b3120
 AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e8512a41dca717b
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e8512a41dca717b
-AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458e8512a41dca717b
 AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a16e24f5c9b2b8
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a16e24f5c9b2b8
+AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a493945c78ec3e
+AE skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&t
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a493945c78ec3e
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a493945c78ec3e
+AE article 0 hits: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94a493945c78ec3e
 AE steel: not enough mills {}
 SA shop الراجحي: 3141
 SA shop سابك: 3220
 feed www.bing.com (1) -> www.bing.com
-feed www.bing.com (3) -> www.bing.com
+feed www.bing.com (6) -> www.bing.com
 feed news.google.com (0) -> 
 feed news.google.com (0) -> 
-EG diesel hits 20.5: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458eda20
-EG diesel hits 20.5: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458eda91
-EG diesel hits 20.5,20.5,20.5: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af458eda91
+EG diesel skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94e6a8d491c9213dd01bf1806ea&url=https%3a%2f%2fwww.mobtada.com%2feconomy%2f1668503%2f%d8%a7%d9%84%d8%a8%d9%86%d8%b2%d9%8a%d9%86-%d9%88%d8%a7%d9%84%d8%b3%d9%88%d9%84%d8%a7%d8%b1-%d9%88%d8%a3%d9%86%d8%a8%d9%88%d8%a8%d8%a9-%d8%a7%d9%84%d8%a8%d9%88%d8%aa%d8%a7%d8%ac%d8%a7%d8%b2-%d8%a7%d8%b9%d8%b1%d9%81-%d9%82%d8%a7%d8%a6%d9%85%d8%a9-%d8%ac%d9%85%d9%8a%d8%b9-%d8%a7%d9%84%d8%a3%d8%b3%d8%b9%d8%a7%d8%b1-%d8%a7%d9%84%d8%b1%d8%b3%d9%85%d9%8a%d8%a9-%d9%81%d9%8a-%d9%85%d8%b5%d8%b1-%d8%a7%d9%84%d9%8a%d9%88%d9%85&c=13427980545530118215&mkt=ar-eg
+EG diesel hits 20.5: http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94ea07
+EG diesel skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94ea07d421c92c57722d6a2aa35&url=https%3a%2f%2fwww.mobtada.com%2feconomy%2f1668503%2f%d8%a7%d9%84%d8%a8%d9%86%d8%b2%d9%8a%d9%86-%d9%88%d8%a7%d9%84%d8%b3%d9%88%d9%84%d8%a7%d8%b1-%d9%88%d8%a3%d9%86%d8%a8%d9%88%d8%a8%d8%a9-%d8%a7%d9%84%d8%a8%d9%88%d8%aa%d8%a7%d8%ac%d8%a7%d8%b2-%d8%a7%d8%b9%d8%b1%d9%81-%d9%82%d8%a7%d8%a6%d9%85%d8%a9-%d8%ac%d9%85%d9%8a%d8%b9-%d8%a7%d9%84%d8%a3%d8%b3%d8%b9%d8%a7%d8%b1-%d8%a7%d9%84%d8%b1%d8%b3%d9%85%d9%8a%d8%a9-%d9%81%d9%8a-%d9%85%d8%b5%d8%b1-%d8%a7%d9%84%d9%8a%d9%88%d9%85&c=13427980545530118215&mkt=ar-eg
+EG diesel skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94ea07d421c92c57722d6a2aa35&url=https%3a%2f%2fwww.alwafd.news%2f5999941&c=13355798653416729089&mkt=ar-eg
+EG diesel skip: 403 http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af5b94ea07d421c92c57722d6a2aa35&url=https%3a%2f%2fwww.dostor.org%2f5773549&c=9089252909605182002&mkt=ar-eg
+EG diesel: not enough data
 feed www.bing.com (0) -> 
 feed www.bing.com (0) -> 
 feed news.google.com (0) -> 
@@ -61,4 +70,4 @@ SA diesel: not enough data
 IN steel 2 prices: https://www.ofbusiness.com/prices/mild-steel/primary-tmt
 IN diesel 95.2: https://upstox.com/diesel-price/diesel-price-in-delhi/
 IN diesel 95.2: https://www.cardekho.com/diesel-price
-CHANGED=1 date=2026-11-11 auto={"EG":"steel:39750,cement:4000,diesel:20.5","AE":"","SA":"steel:3180","IN":"steel:76450,diesel:95.2"}
+CHANGED=1 date=2026-11-12 auto={"EG":"steel:39950,cement:4100","AE":"","SA":"steel:3180","IN":"steel:76450,diesel:95.2"}
