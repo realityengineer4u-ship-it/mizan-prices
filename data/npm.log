@@ -1,5 +1,5 @@
 npm notice
-npm notice 📦  mizan-bina-prices@1.0.75
+npm notice 📦  mizan-bina-prices@1.0.76
 npm notice Tarball Contents
 npm notice 1.9kB README.md
 npm notice 2.7kB data/current.json
@@ -7,22 +7,22 @@ npm notice 355B package.json
 npm notice 2.4kB prices.js
 npm notice Tarball Details
 npm notice name: mizan-bina-prices
-npm notice version: 1.0.75
-npm notice filename: mizan-bina-prices-1.0.75.tgz
+npm notice version: 1.0.76
+npm notice filename: mizan-bina-prices-1.0.76.tgz
 npm notice package size: 2.5 kB
 npm notice unpacked size: 7.4 kB
-npm notice shasum: eefe2e46500654279f5380eccc7009d047449c03
-npm notice integrity: sha512-0UXEXWBOZRd9m[...]dNZaN/TvFDeGA==
+npm notice shasum: 99c9b97ddb445b07cf075003e8d0382f5e722a87
+npm notice integrity: sha512-48SSgPP9u2zsv[...]1TlQ6mM4VDQQg==
 npm notice total files: 4
 npm notice
 npm notice Publishing to https://registry.npmjs.org/ with tag latest and public access
 npm notice Your package is being processed and may take a few minutes to become available.
-+ mizan-bina-prices@1.0.75
++ mizan-bina-prices@1.0.76
 npm exit: 0
 {
-  "id": "v4MdP2TfevCeicCu",
+  "id": "O2Q6wWvUH994HinS",
   "status": "finished",
-  "timestamp": "2026-11-27T14:10:58.664Z",
+  "timestamp": "2026-11-28T13:28:02.554Z",
   "paths": {
     "/npm/mizan-bina-prices@latest/prices.js": {
       "throttled": false,
